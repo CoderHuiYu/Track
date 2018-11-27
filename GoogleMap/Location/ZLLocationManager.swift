@@ -61,7 +61,7 @@ extension ZLLocationManager: CLLocationManagerDelegate {
     
     // 监听location变化
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("updateLocations: \(locations)")
+        print("pathCount: \(pathArray.count) ~~~~~~ allPathCount: \(allPathArray.count)")
         // If it's a relatively recent event, turn off updates to save power.
         
         guard let currentLocation = locations.last else { return }
@@ -71,9 +71,15 @@ extension ZLLocationManager: CLLocationManagerDelegate {
             return
         }
         
-        print(locationDetection(currentLocation, lastLocation))
+        let isNeedBreak = locationDetection(currentLocation, lastLocation)
         
-        pathArray.append(currentLocation)
+        if isNeedBreak {
+            allPathArray.append(pathArray)
+            pathArray.removeAll()
+        } else {
+            pathArray.append(currentLocation)
+        }
+        
         
         
         // Call the allowDeferredLocationUpdatesUntilTraveled:timeout: method whenever possible to defer the delivery of updates until a later time, as described in Deferring Location Updates While Your App Is in the Background.
@@ -87,7 +93,7 @@ extension ZLLocationManager: CLLocationManagerDelegate {
     /// - Parameters:
     ///   - currentLocation: <#currentLocation description#>
     ///   - lastLocation: <#lastLocation description#>
-    /// - Returns:
+    /// - Returns: 是否需要截断path
     func locationDetection(_ currentLocation: CLLocation, _ lastLocation: CLLocation) -> Bool {
         // 获取两点之间的时间
         let currentTime = currentLocation.timestamp.timeIntervalSince1970
@@ -100,13 +106,15 @@ extension ZLLocationManager: CLLocationManagerDelegate {
         // 判断停留时间 和 停留距离
         if tempTime > 0.5 * 60 && distance < 1000 {
             print("停留时间>5min")
+            return true
+        } else {
+            
+            print("两点之间的时间:\(tempTime)")
+            
+            print("两点之间的距离:\(distance)")
+            
+            return false
         }
-        
-        print("两点之间的时间:\(tempTime)")
-        
-        print("两点之间的距离:\(distance)")
-        
-        return true
     }
     
     
