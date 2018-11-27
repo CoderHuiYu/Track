@@ -51,7 +51,7 @@ class ZLLocationFilterStrategy: NSObject {
         let distance = currentLocation.distance(from: lastLocation)
         
         if tempTime < carTimeThreshold && distance > cardDistanceThreshold {
-            //now it is car
+            //now is car
             isFindNode = false
             let zlidentify = ZLIdentify.car
             let currentL =  ZLLocation.init(location: lastLocation, zlIdentify: zlidentify)
@@ -105,7 +105,7 @@ class ZLLocationFilterStrategy: NSObject {
         let tempTime = (currentTime - lastTime)
         
         let distance = currentLocation.location!.distance(from: temp!.location!)
-        if tempTime < humanTimeThreshold && distance < humanRangeThreshold {
+        if tempTime > humanTimeThreshold && distance < humanRangeThreshold {
             //now find the node
             return (true,currentLocation)
         }
