@@ -100,7 +100,7 @@ class ZLLocationFilterStrategy: NSObject {
         let distance = currentLocation.location!.distance(from: temp!.location!)
         if tempTime > humanTimeThreshold && distance < humanRangeThreshold {
             //now find the node
-            return (true,currentLocation)
+            return (true,temp!)
         }
         return (false,currentLocation)
     }
