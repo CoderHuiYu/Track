@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     var mapView: GMSMapView!
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 15.0
+    var mapLocations = Array<CLLocation>()
+    var mapMarks = Array<GMSMarker>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,10 +52,16 @@ extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.last!
         print("Location: \(location)")
+        mapLocations.append(location)
         
         let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
                                               longitude: location.coordinate.longitude,
                                               zoom: zoomLevel)
+        let position = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        let marker = GMSMarker(position: position)
+        marker.title = "1"
+        marker.map = mapView
+        mapMarks.append(marker)
         
         if mapView.isHidden {
             mapView.isHidden = false
