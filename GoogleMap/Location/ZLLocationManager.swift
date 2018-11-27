@@ -13,7 +13,6 @@ class ZLLocationManager: NSObject {
 
     static let shared: ZLLocationManager = ZLLocationManager()
     
-    
     /*  if you are monitoring regions or using the significant-change location service in your app, there are situations where you must start location services at launch time. Apps using those services can be terminated and subsequently relaunched when new location events arrive. Although the app itself is relaunched, location services are not started automatically. When an app is relaunched because of a location update, the launch options dictionary passed to your application:willFinishLaunchingWithOptions: or application:didFinishLaunchingWithOptions: method contains the UIApplicationLaunchOptionsLocationKey key. The presence of that key signals that new location data is waiting to be delivered to your app. To obtain that data, you must create a new CLLocationManager object and restart the location services that you had running prior to your app’s termination. When you restart those services, the location manager delivers all pending location updates to its delegate.
     */
     lazy var locationManager: CLLocationManager = {
@@ -35,8 +34,10 @@ class ZLLocationManager: NSObject {
         return locationManager
     }()
     
-    var currentLocation: CLLocation?
-    
+    // 当前记录路线
+    lazy var pathArray = [CLLocation]()
+    // 所有记录路线
+    lazy var allPathArray = [[CLLocation]]()
     
     override init() {
         super.init()
@@ -46,10 +47,10 @@ class ZLLocationManager: NSObject {
         locationManager.startUpdatingLocation()
         // 重大位置更改
 //        locationManager.startMonitoringSignificantLocationChanges()
-        
     }
 }
 
+// MARK: - CLLocationManagerDelegate
 extension ZLLocationManager: CLLocationManagerDelegate {
     
     // 隐私通知
@@ -61,26 +62,52 @@ extension ZLLocationManager: CLLocationManagerDelegate {
     // 监听location变化
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("updateLocations: \(locations)")
-        
         // If it's a relatively recent event, turn off updates to save power.
-        guard let location = locations.last else { return }
         
-        let currentTime = location.timestamp.timeIntervalSinceNow
+        guard let currentLocation = locations.last else { return }
         
-        guard let lastLocation = currentLocation else {
-            currentLocation = location
+        guard let lastLocation = pathArray.last else {
+            pathArray.append(currentLocation)
             return
         }
-
-        let lastTime = lastLocation.timestamp.timeIntervalSinceNow
-        print("currentTime:\(currentTime) ~~~~~~~~~~~ lastTime:\(lastTime)")
+        
+        print(locationDetection(currentLocation, lastLocation))
+        
+        pathArray.append(currentLocation)
         
         
-        currentLocation = location
         // Call the allowDeferredLocationUpdatesUntilTraveled:timeout: method whenever possible to defer the delivery of updates until a later time, as described in Deferring Location Updates While Your App Is in the Background.
 //        locationManager.allowDeferredLocationUpdates(untilTraveled: <#T##CLLocationDistance#>, timeout: <#T##TimeInterval#>)
+        
     }
     
+    
+    /// <#Description#>
+    ///
+    /// - Parameters:
+    ///   - currentLocation: <#currentLocation description#>
+    ///   - lastLocation: <#lastLocation description#>
+    /// - Returns:
+    func locationDetection(_ currentLocation: CLLocation, _ lastLocation: CLLocation) -> Bool {
+        // 获取两点之间的时间
+        let currentTime = currentLocation.timestamp.timeIntervalSince1970
+        let lastTime = lastLocation.timestamp.timeIntervalSince1970
+        let tempTime = (currentTime - lastTime)
+        
+        // 获取两点之间的距离 m
+        let distance = currentLocation.distance(from: lastLocation)
+        
+        // 判断停留时间 和 停留距离
+        if tempTime > 0.5 * 60 && distance < 1000 {
+            print("停留时间>5min")
+        }
+        
+        print("两点之间的时间:\(tempTime)")
+        
+        print("两点之间的距离:\(distance)")
+        
+        return true
+    }
     
     
     // When the location manager pauses location updates, it notifies its delegate object by calling its locationManagerDidPauseLocationUpdates: method. When the location manager resumes updates, it calls the delegate’s locationManagerDidResumeLocationUpdates: method. You can use these delegate methods to perform tasks or adjust the behavior of your app. For example, when location updates are paused, you might use the delegate notification to save data to disk or stop location updates altogether. A navigation app in the middle of turn-by-turn directions might prompt the user and ask whether navigation should be disabled temporarily.
@@ -90,5 +117,32 @@ extension ZLLocationManager: CLLocationManagerDelegate {
     
     func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
         
+    }
+    
+}
+
+// MARK: - 地理编码
+extension ZLLocationManager {
+    
+    /// 反地理编码
+    ///
+    /// - Parameter location: CLLocation
+    /// - Returns: name
+    func reverseGeocoder(_ location: CLLocation, completion:@escaping ((_ name: String?)->())) {
+        let coder = CLGeocoder()
+        coder.reverseGeocodeLocation(location) { (placemarks, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                completion(nil)
+            }
+            guard let placemarksArray = placemarks else { return }
+            if placemarksArray.count > 0 {
+                let placeMark = placemarksArray.first!
+                print(placeMark)
+                completion(placeMark.name)
+            } else {
+                completion(nil)
+            }
+        }
     }
 }
