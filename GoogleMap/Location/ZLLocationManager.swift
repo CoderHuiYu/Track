@@ -77,24 +77,15 @@ extension ZLLocationManager: CLLocationManagerDelegate {
             pathArray.append(currentLocation)
             return
         }
-        let isNeedBreak = filterStrategy?.detectBestNode(currentLocation, lastLocation)
-        if isNeedBreak! {
-            allPathArray.append(pathArray)
-            pathArray.removeAll()
-        } else {
-            pathArray.append(currentLocation)
-        }
+        filterStrategy?.detectBestNode(currentLocation, lastLocation)
         
         guard self.delegate == nil else {
             self.delegate!.locationManager(didUpdateLocation: lastLocation)
             return
         }
-        // Call the allowDeferredLocationUpdatesUntilTraveled:timeout: method whenever possible to defer the delivery of updates until a later time, as described in Deferring Location Updates While Your App Is in the Background.
-//        locationManager.allowDeferredLocationUpdates(untilTraveled: <#T##CLLocationDistance#>, timeout: <#T##TimeInterval#>)
-        
+      
     }
-        
-    // When the location manager pauses location updates, it notifies its delegate object by calling its locationManagerDidPauseLocationUpdates: method. When the location manager resumes updates, it calls the delegate’s locationManagerDidResumeLocationUpdates: method. You can use these delegate methods to perform tasks or adjust the behavior of your app. For example, when location updates are paused, you might use the delegate notification to save data to disk or stop location updates altogether. A navigation app in the middle of turn-by-turn directions might prompt the user and ask whether navigation should be disabled temporarily.
+    
     func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager) {
         
     }

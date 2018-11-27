@@ -9,17 +9,25 @@
 import UIKit
 import GoogleMaps
 
+enum ZLIdentify {
+    case car
+    case human
+}
+
 struct ZLLocation {
     var location : CLLocation?
-    var defaultName:String?
-    
+    var zlIdentify :ZLIdentify
 }
 class ZLLocationFilterStrategy: NSObject {
     
-    var locations = Array<CLLocation>()
-    let speedThreshold = 5     //unit : m/s
-    let rangeThreshold = 1000  //unit : m
-    let timeThreshold = 300    //unit : second
+    let carTimeThreshold = 10.0          //unit : m/s
+    let cardDistanceThreshold = 50.0     //unit : m
+    let humanRangeThreshold = 1000.0          //unit : m
+    let humanTimeThreshold = 300.0           //unit : second
+    
+    var isFindNode : Bool?
+    var loactionArray = Array<ZLLocation>()
+    var nodeArray = Array<ZLLocation>()
     
      // MARK: Life Cycle
     override init() {
@@ -33,30 +41,90 @@ class ZLLocationFilterStrategy: NSObject {
     ///   - currentLocation: currentLocation
     ///   - lastLocation: lastLocation
     /// - Returns: make sure is a node
-    func detectBestNode(_ currentLocation: CLLocation, _ lastLocation: CLLocation) -> Bool {
+    func detectBestNode(_ currentLocation: CLLocation, _ lastLocation: CLLocation) {
+        
         let currentTime = currentLocation.timestamp.timeIntervalSince1970
         let lastTime = lastLocation.timestamp.timeIntervalSince1970
         let tempTime = (currentTime - lastTime)
         
-        // 获取两点之间的距离 m
+        // 获取两点之间的距离
         let distance = currentLocation.distance(from: lastLocation)
         
-        // 判断停留时间 和 停留距离
-        if tempTime > 0.5 * 60 && distance < 1000 {
-            print("停留时间>5min")
-            return true
-        } else {
+        if tempTime < carTimeThreshold && distance > cardDistanceThreshold {
+            //now it is car
+            isFindNode = false
+            let zlidentify = ZLIdentify.car
+            let currentL =  ZLLocation.init(location: lastLocation, zlIdentify: zlidentify)
+            self.loactionArray.append(currentL)
             
-            print("两点之间的时间:\(tempTime)")
+        }else{
+            //now is human
+            let zlidentify = ZLIdentify.human
+            let currentL =  ZLLocation.init(location: lastLocation, zlIdentify: zlidentify)
+            self.loactionArray.append(currentL)
             
-            print("两点之间的距离:\(distance)")
+            guard isFindNode == false else {
+                return
+            }
             
-            return false
+            let (flag,nodeLocation) = backtracking(self.loactionArray, currentL)
+            if flag == true {
+                isFindNode = true
+                self.nodeArray.append(nodeLocation)
+            }
         }
     }
+    
+    func backtracking(_ locations:Array<ZLLocation>,_ currentLocation :ZLLocation) -> (Bool,ZLLocation){
+        
+        guard locations.count > 1 else {
+            return (false,currentLocation)
+        }
+        
+        var temp : ZLLocation?
+        var flag = true
+        for  zlo in locations.reversed() {
+            if zlo.zlIdentify == ZLIdentify.human {
+                flag = true
+            }else{
+                flag = false
+            }
+            
+            if flag == false{
+               temp = zlo
+               break
+            }
+        }
+        
+        guard temp != nil else {
+              return (false,currentLocation)
+        }
+        
+        let currentTime = currentLocation.location!.timestamp.timeIntervalSince1970
+        let lastTime = temp!.location!.timestamp.timeIntervalSince1970
+        let tempTime = (currentTime - lastTime)
+        
+        let distance = currentLocation.location!.distance(from: temp!.location!)
+        if tempTime < humanTimeThreshold && distance < humanRangeThreshold {
+            //now find the node
+            return (true,currentLocation)
+        }
+        return (false,currentLocation)
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
 // MARK: - 地理编码
-extension ZLLocationManager {
+extension ZLLocationFilterStrategy {
     
     /// 反地理编码
     ///
