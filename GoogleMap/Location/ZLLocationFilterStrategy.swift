@@ -20,7 +20,7 @@ struct ZLLocation {
 }
 class ZLLocationFilterStrategy: NSObject {
     
-    let carTimeThreshold = 10.0          //unit : m/s
+    let carTimeThreshold = 10.0          //unit : s
     let cardDistanceThreshold = 50.0     //unit : m
     let humanRangeThreshold = 1000.0          //unit : m
     let humanTimeThreshold = 300.0           //unit : second
@@ -82,17 +82,10 @@ class ZLLocationFilterStrategy: NSObject {
         }
         
         var temp : ZLLocation?
-        var flag = true
         for  zlo in locations.reversed() {
-            if zlo.zlIdentify == ZLIdentify.human {
-                flag = true
-            }else{
-                flag = false
-            }
-            
-            if flag == false{
-               temp = zlo
-               break
+            if zlo.zlIdentify == ZLIdentify.car {
+                temp = zlo
+                break
             }
         }
         
