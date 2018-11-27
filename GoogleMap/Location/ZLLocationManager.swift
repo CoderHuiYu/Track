@@ -15,7 +15,7 @@ protocol ZLLocationManagerDelegateProtocol: NSObjectProtocol {
 class ZLLocationManager: NSObject {
 
     static let shared: ZLLocationManager = ZLLocationManager()
-    var zllocationFilterStrategy : ZLLocationFilterStrategy?
+    var filterStrategy : ZLLocationFilterStrategy?
 
     weak var delegate: ZLLocationManagerDelegateProtocol?
     
@@ -47,7 +47,7 @@ class ZLLocationManager: NSObject {
     
     override init() {
         super.init()
-        zllocationFilterStrategy = ZLLocationFilterStrategy.init()
+        filterStrategy = ZLLocationFilterStrategy.init()
         // 隐私服务请求
         locationManager.requestAlwaysAuthorization()
         // 标准更改位置
@@ -77,10 +77,8 @@ extension ZLLocationManager: CLLocationManagerDelegate {
             pathArray.append(currentLocation)
             return
         }
-        
-        let isNeedBreak = locationDetection(currentLocation, lastLocation)
-        
-        if isNeedBreak {
+        let isNeedBreak = filterStrategy?.detectBestNode(currentLocation, lastLocation)
+        if isNeedBreak! {
             allPathArray.append(pathArray)
             pathArray.removeAll()
         } else {
@@ -95,38 +93,7 @@ extension ZLLocationManager: CLLocationManagerDelegate {
 //        locationManager.allowDeferredLocationUpdates(untilTraveled: <#T##CLLocationDistance#>, timeout: <#T##TimeInterval#>)
         
     }
-    
-    
-    /// <#Description#>
-    ///
-    /// - Parameters:
-    ///   - currentLocation: <#currentLocation description#>
-    ///   - lastLocation: <#lastLocation description#>
-    /// - Returns: 是否需要截断path
-    func locationDetection(_ currentLocation: CLLocation, _ lastLocation: CLLocation) -> Bool {
-        // 获取两点之间的时间
-        let currentTime = currentLocation.timestamp.timeIntervalSince1970
-        let lastTime = lastLocation.timestamp.timeIntervalSince1970
-        let tempTime = (currentTime - lastTime)
         
-        // 获取两点之间的距离 m
-        let distance = currentLocation.distance(from: lastLocation)
-        
-        // 判断停留时间 和 停留距离
-        if tempTime > 0.5 * 60 && distance < 1000 {
-            print("停留时间>5min")
-            return true
-        } else {
-            
-            print("两点之间的时间:\(tempTime)")
-            
-            print("两点之间的距离:\(distance)")
-            
-            return false
-        }
-    }
-    
-    
     // When the location manager pauses location updates, it notifies its delegate object by calling its locationManagerDidPauseLocationUpdates: method. When the location manager resumes updates, it calls the delegate’s locationManagerDidResumeLocationUpdates: method. You can use these delegate methods to perform tasks or adjust the behavior of your app. For example, when location updates are paused, you might use the delegate notification to save data to disk or stop location updates altogether. A navigation app in the middle of turn-by-turn directions might prompt the user and ask whether navigation should be disabled temporarily.
     func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager) {
         
@@ -138,28 +105,4 @@ extension ZLLocationManager: CLLocationManagerDelegate {
     
 }
 
-// MARK: - 地理编码
-extension ZLLocationManager {
-    
-    /// 反地理编码
-    ///
-    /// - Parameter location: CLLocation
-    /// - Returns: name
-    func reverseGeocoder(_ location: CLLocation, completion:@escaping ((_ name: String?)->())) {
-        let coder = CLGeocoder()
-        coder.reverseGeocodeLocation(location) { (placemarks, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                completion(nil)
-            }
-            guard let placemarksArray = placemarks else { return }
-            if placemarksArray.count > 0 {
-                let placeMark = placemarksArray.first!
-                print(placeMark)
-                completion(placeMark.name)
-            } else {
-                completion(nil)
-            }
-        }
-    }
-}
+
