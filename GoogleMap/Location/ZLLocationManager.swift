@@ -8,10 +8,16 @@
 
 import UIKit
 import CoreLocation
-
+protocol ZLLocationManagerDelegateProtocol: NSObjectProtocol {
+    func locationManager(didUpdateLocation location: CLLocation)
+   
+}
 class ZLLocationManager: NSObject {
 
     static let shared: ZLLocationManager = ZLLocationManager()
+    var zllocationFilterStrategy : ZLLocationFilterStrategy?
+
+    weak var delegate: ZLLocationManagerDelegateProtocol?
     
     /*  if you are monitoring regions or using the significant-change location service in your app, there are situations where you must start location services at launch time. Apps using those services can be terminated and subsequently relaunched when new location events arrive. Although the app itself is relaunched, location services are not started automatically. When an app is relaunched because of a location update, the launch options dictionary passed to your application:willFinishLaunchingWithOptions: or application:didFinishLaunchingWithOptions: method contains the UIApplicationLaunchOptionsLocationKey key. The presence of that key signals that new location data is waiting to be delivered to your app. To obtain that data, you must create a new CLLocationManager object and restart the location services that you had running prior to your app’s termination. When you restart those services, the location manager delivers all pending location updates to its delegate.
     */
@@ -41,6 +47,7 @@ class ZLLocationManager: NSObject {
     
     override init() {
         super.init()
+        zllocationFilterStrategy = ZLLocationFilterStrategy.init()
         // 隐私服务请求
         locationManager.requestAlwaysAuthorization()
         // 标准更改位置
@@ -80,8 +87,10 @@ extension ZLLocationManager: CLLocationManagerDelegate {
             pathArray.append(currentLocation)
         }
         
-        
-        
+        guard self.delegate == nil else {
+            self.delegate!.locationManager(didUpdateLocation: lastLocation)
+            return
+        }
         // Call the allowDeferredLocationUpdatesUntilTraveled:timeout: method whenever possible to defer the delivery of updates until a later time, as described in Deferring Location Updates While Your App Is in the Background.
 //        locationManager.allowDeferredLocationUpdates(untilTraveled: <#T##CLLocationDistance#>, timeout: <#T##TimeInterval#>)
         
