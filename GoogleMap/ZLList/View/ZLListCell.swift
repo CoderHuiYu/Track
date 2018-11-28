@@ -8,7 +8,7 @@
 
 import UIKit
 import GoogleMaps
-class ZLListCell: UITableViewCell, MapPathViewModelDelegate{
+class ZLListCell: UITableViewCell {
     
     @IBOutlet weak var startTextField: UITextField!
     @IBOutlet weak var endTextField: UITextField!
@@ -23,7 +23,7 @@ class ZLListCell: UITableViewCell, MapPathViewModelDelegate{
         mapView.isUserInteractionEnabled = false
         
         objMapModel.delegate = self
-        objMapModel.jsonDataRead()
+//        objMapModel.jsonDataRead()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -31,6 +31,14 @@ class ZLListCell: UITableViewCell, MapPathViewModelDelegate{
 
         // Configure the view for the selected state
     }
+    
+    
+    
+}
+
+// MARK: - MapPathViewModelDelegate
+extension ZLListCell: MapPathViewModelDelegate {
+    
     func isSucessReadJson() {
         drawPathOnMap()
     }
@@ -38,20 +46,21 @@ class ZLListCell: UITableViewCell, MapPathViewModelDelegate{
     func isFailReadJson(msg: String) {
         
     }
+    
     //path create
     func drawPathOnMap()  {
         let path = GMSMutablePath()
         let marker = GMSMarker()
         var i = 0
         
-        let inialLat:Double = objMapModel.arrayMapPath[0].lat!
-        let inialLong:Double = objMapModel.arrayMapPath[0].lon!
+        let inialLat:Double = objMapModel.arrayMapPath[0].lat
+        let inialLong:Double = objMapModel.arrayMapPath[0].lon
         
         for mapPath in objMapModel.arrayMapPath
         {
             if i == 0{
                 let marker = GMSMarker()
-                marker.position = CLLocationCoordinate2DMake(mapPath.lat!, mapPath.lon!)
+                marker.position = CLLocationCoordinate2DMake(mapPath.lat, mapPath.lon)
                 //                marker.icon = UIImage(named: "map_location_blue")
                 marker.title = "Company"
                 marker.snippet = "Work"
@@ -60,13 +69,13 @@ class ZLListCell: UITableViewCell, MapPathViewModelDelegate{
             i = i + 1
             if i == objMapModel.arrayMapPath.count-1{
                 let marker = GMSMarker()
-                marker.position = CLLocationCoordinate2DMake(mapPath.lat!, mapPath.lon!)
+                marker.position = CLLocationCoordinate2DMake(mapPath.lat, mapPath.lon)
                 //                marker.icon = UIImage(named: "map_location_blue")
                 marker.title = "Company"
                 marker.snippet = "Work"
                 marker.map = mapView
             }
-            path.add(CLLocationCoordinate2DMake(mapPath.lat!, mapPath.lon!))
+            path.add(CLLocationCoordinate2DMake(mapPath.lat, mapPath.lon))
         }
         //set poly line on mapview
         let rectangle = GMSPolyline(path: path)
@@ -78,14 +87,10 @@ class ZLListCell: UITableViewCell, MapPathViewModelDelegate{
         let loc : CLLocation = CLLocation(latitude: inialLat, longitude: inialLong)
         updateMapFrame(newLocation: loc, zoom: 11.0)
     }
+    
     func updateMapFrame(newLocation: CLLocation, zoom: Float) {
         let camera = GMSCameraPosition.camera(withTarget: newLocation.coordinate, zoom: zoom)
         self.mapView.animate(to: camera)
     }
-    
-}
-
-
-extension ZLListCell {
     
 }
