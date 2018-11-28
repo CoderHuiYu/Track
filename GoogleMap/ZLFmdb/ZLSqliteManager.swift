@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 class ZLSqliteManager: NSObject {
     static let sharInstance = ZLSqliteManager()
     var datebase : FMDatabase?

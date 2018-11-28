@@ -20,10 +20,12 @@
 		0C2C9FE721AE93EB0009844E /* ZLhhhhh.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C9FE221AE93EB0009844E /* ZLhhhhh.m */; };
 		0C2C9FE821AE93EB0009844E /* ZLSqliteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C9FE321AE93EB0009844E /* ZLSqliteManager.swift */; };
 		0C2C9FE921AE93EB0009844E /* ZLDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C9FE521AE93EB0009844E /* ZLDataManager.swift */; };
+		0C2C9FEB21AE9D2B0009844E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2C9FC721AE3B500009844E /* libsqlite3.tbd */; };
+		0C8E12F521AEA16800D593E4 /* libFMDB.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C8E12F421AEA16800D593E4 /* libFMDB.a */; };
+		0C8E12F721AEA16C00D593E4 /* libPods-GoogleMap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C8E12F621AEA16C00D593E4 /* libPods-GoogleMap.a */; };
 		184D7CB021AE37D400096BDA /* ZLListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184D7CAE21AE37D400096BDA /* ZLListCell.swift */; };
 		184D7CB121AE37D400096BDA /* ZLListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184D7CAF21AE37D400096BDA /* ZLListCell.xib */; };
 		18F5DCC621ACED4100D3352D /* ZLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F5DCC521ACED4100D3352D /* ZLLocationManager.swift */; };
-		56F2D43E218C1E6515593D51 /* libPods-GoogleMap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF2000902A5D4119D9A7DA47 /* libPods-GoogleMap.a */; };
 		FED6E19B21AE51B500F8943F /* MapPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED6E19A21AE51AB00F8943F /* MapPath.swift */; };
 		FED6E19D21AE51D300F8943F /* MapPathViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED6E19C21AE51D300F8943F /* MapPathViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -62,12 +64,14 @@
 		0C2C9FBF21AD36620009844E /* ZLLocationFilterStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLLocationFilterStrategy.swift; sourceTree = "<group>"; };
 		0C2C9FC321AE28080009844E /* ZLListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLListViewController.swift; sourceTree = "<group>"; };
 		0C2C9FC721AE3B500009844E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		0C2C9FC921AE3B5F0009844E /* libFMDB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFMDB.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C2C9FE021AE93EB0009844E /* ZLTrackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLTrackModel.swift; sourceTree = "<group>"; };
 		0C2C9FE221AE93EB0009844E /* ZLhhhhh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLhhhhh.m; sourceTree = "<group>"; };
 		0C2C9FE321AE93EB0009844E /* ZLSqliteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLSqliteManager.swift; sourceTree = "<group>"; };
 		0C2C9FE421AE93EB0009844E /* ZLhhhhh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLhhhhh.h; sourceTree = "<group>"; };
 		0C2C9FE521AE93EB0009844E /* ZLDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLDataManager.swift; sourceTree = "<group>"; };
+		0C2C9FEA21AE94C80009844E /* GoogleMap-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GoogleMap-Bridging-Header.h"; path = "GoogleMap/GoogleMap-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		0C8E12F421AEA16800D593E4 /* libFMDB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFMDB.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C8E12F621AEA16C00D593E4 /* libPods-GoogleMap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-GoogleMap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		184D7CAE21AE37D400096BDA /* ZLListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLListCell.swift; sourceTree = "<group>"; };
 		184D7CAF21AE37D400096BDA /* ZLListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZLListCell.xib; sourceTree = "<group>"; };
 		18F5DCC521ACED4100D3352D /* ZLLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLLocationManager.swift; sourceTree = "<group>"; };
@@ -75,7 +79,6 @@
 		836878E12E5071D2B1134ABA /* Pods-GoogleMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoogleMap/Pods-GoogleMap.release.xcconfig"; sourceTree = "<group>"; };
 		FED6E19A21AE51AB00F8943F /* MapPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPath.swift; sourceTree = "<group>"; };
 		FED6E19C21AE51D300F8943F /* MapPathViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPathViewModel.swift; sourceTree = "<group>"; };
-		FF2000902A5D4119D9A7DA47 /* libPods-GoogleMap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GoogleMap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +86,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56F2D43E218C1E6515593D51 /* libPods-GoogleMap.a in Frameworks */,
+				0C8E12F721AEA16C00D593E4 /* libPods-GoogleMap.a in Frameworks */,
+				0C8E12F521AEA16800D593E4 /* libFMDB.a in Frameworks */,
+				0C2C9FEB21AE9D2B0009844E /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,9 +168,10 @@
 		0C2C9FE121AE93EB0009844E /* ZLFmdb */ = {
 			isa = PBXGroup;
 			children = (
+				0C2C9FEA21AE94C80009844E /* GoogleMap-Bridging-Header.h */,
+				0C2C9FE421AE93EB0009844E /* ZLhhhhh.h */,
 				0C2C9FE221AE93EB0009844E /* ZLhhhhh.m */,
 				0C2C9FE321AE93EB0009844E /* ZLSqliteManager.swift */,
-				0C2C9FE421AE93EB0009844E /* ZLhhhhh.h */,
 				0C2C9FE521AE93EB0009844E /* ZLDataManager.swift */,
 			);
 			path = ZLFmdb;
@@ -202,9 +208,9 @@
 		9BAD00F057DA42CD41797FFD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0C2C9FC921AE3B5F0009844E /* libFMDB.a */,
+				0C8E12F621AEA16C00D593E4 /* libPods-GoogleMap.a */,
+				0C8E12F421AEA16800D593E4 /* libFMDB.a */,
 				0C2C9FC721AE3B500009844E /* libsqlite3.tbd */,
-				FF2000902A5D4119D9A7DA47 /* libPods-GoogleMap.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -613,7 +619,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A5X7BL9CZV;
+				DEVELOPMENT_TEAM = T55GAY3536;
 				INFOPLIST_FILE = GoogleMap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -633,7 +639,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A5X7BL9CZV;
+				DEVELOPMENT_TEAM = T55GAY3536;
 				INFOPLIST_FILE = GoogleMap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
