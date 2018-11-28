@@ -15,12 +15,6 @@ DEPENDENCIES:
   - GoogleMaps
   - GooglePlaces
 
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - FMDB
-    - GoogleMaps
-    - GooglePlaces
-
 SPEC CHECKSUMS:
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
@@ -28,4 +22,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: b919340b008a4d090a127c93c62c4b7752b2161b
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.4.0
