@@ -40,13 +40,12 @@ class ZLLocationManager: NSObject {
         return locationManager
     }()
     
-    // 当前记录路线
-    lazy var pathArray = [CLLocation]()
-    // 所有记录路线
-    lazy var allPathArray = [[CLLocation]]()
+    // last location
+    var lastLocation: CLLocation?
     
     override init() {
         super.init()
+        
         filterStrategy = ZLLocationFilterStrategy.init()
         // 隐私服务请求
         locationManager.requestAlwaysAuthorization()
@@ -68,19 +67,18 @@ extension ZLLocationManager: CLLocationManagerDelegate {
     
     // 监听location变化
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("pathCount: \(pathArray.count) ~~~~~~ allPathCount: \(allPathArray.count)")
         // If it's a relatively recent event, turn off updates to save power.
         
         guard let currentLocation = locations.last else { return }
-        
-        guard let lastLocation = pathArray.last else {
-            pathArray.append(currentLocation)
+        guard let theLastLocation = lastLocation else {
+            lastLocation = currentLocation
             return
         }
-        filterStrategy?.detectBestNode(currentLocation, lastLocation)
+        
+        filterStrategy?.detectBestNode(currentLocation, theLastLocation)
         
         guard self.delegate == nil else {
-            self.delegate!.locationManager(didUpdateLocation: lastLocation)
+            self.delegate!.locationManager(didUpdateLocation: theLastLocation)
             return
         }
       

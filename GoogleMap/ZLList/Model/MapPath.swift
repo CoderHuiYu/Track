@@ -8,14 +8,11 @@
 
 class MapPath {
     
-    var lat : Double?
-    var lon : Double?
-    var angle : Double?
+    var lat : Double
+    var lon : Double
    
-    init() {}
-    init(lat : Double?,lon : Double?,angle : Double?) {
+    init(lat : Double,lon : Double) {
         self.lat = lat
         self.lon = lon
-        self.angle = angle
     }
 }

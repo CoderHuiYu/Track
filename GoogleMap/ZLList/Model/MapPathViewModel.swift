@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 protocol MapPathViewModelDelegate {
     func isSucessReadJson()
@@ -18,46 +19,42 @@ class MapPathViewModel {
     var arrayMapPath : [MapPath] = []
     
     //Json File data get
-    func jsonDataRead() {
-        do {
-            if let file = Bundle.main.url(forResource: "LocationData", withExtension: "json") {
-                let data = try Data(contentsOf: file)
-                let json = try JSONSerialization.jsonObject(with: data, options: [])
-                if let object = json as? [String: Any] {
-                    parseJson(json: object)
-                } else {
-                    print("JSON is invalid")
-                    delegate?.isFailReadJson(msg: "JSON is invalid")
-                }
-            } else {
-                print("no file")
-                delegate?.isFailReadJson(msg: "No File found")
-            }
-        } catch {
-            print(error.localizedDescription)
-            delegate?.isFailReadJson(msg: error.localizedDescription)
-        }
+    func jsonDataRead(_ location: ZLTrackModel) {
+        parseJson(location)
     }
     
     //Pars json from array
-    func parseJson(json : [String: Any])  {
-        //print(json)
-        let pathArray = json["Locations"] as! NSArray
-        for data in pathArray
-        {
-            let dic = data as! NSDictionary
-           //print(dic)
-            guard let lat = dic.value(forKey: "lat") as? String else {
-                return
-            }
-            guard let lon:String = dic.value(forKey: "long") as? String else {
-                return
-            }
-            guard let angle:String = dic.value(forKey: "angle") as? String else {
-                return
+    func parseJson(_ location : ZLTrackModel)  {
+        
+        var locations = [CLLocation]()
+        
+        guard let startNode = location.startNode, let startLocation = startNode.location else {
+            return
+        }
+        locations.insert(startLocation, at: 0)
+        
+        if location.locations.count > 0 {
+            
+            for cl in location.locations {
+                guard let cll = cl.location else { break }
+                locations.append(cll)
             }
             
-            arrayMapPath.append(MapPath(lat: Double(lat), lon: Double(lon), angle: Double(angle)))
+        }
+        
+        guard let endNode = location.endNode, let endLocation = endNode.location else {
+            return
+        }
+        locations.append(endLocation)
+        
+        
+        
+        
+        for data in locations {
+            let lat = data.coordinate.latitude
+            let lon = data.coordinate.longitude
+    
+            arrayMapPath.append(MapPath(lat: lat, lon: lon))
         }
         
         if arrayMapPath.count > 0

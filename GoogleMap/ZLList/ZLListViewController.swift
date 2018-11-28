@@ -20,11 +20,20 @@ class ZLListViewController: UIViewController {
         tableView.dataSource = self
         return tableView
     }()
- 
     
+    var locations = [ZLTrackModel]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
+        
+        let zldata =  ZLDataManager.init()
+        guard let los = zldata.selectData() as? [ZLTrackModel] else { return }
+        locations = los
     }
     
 }
@@ -33,26 +42,20 @@ extension ZLListViewController : UITableViewDelegate,UITableViewDataSource{
     // MARK:UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: trackCellReusedIdentifier, for: indexPath) as! ZLListCell
+        
         return cell
     }
     // MARK:UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let zldata =  ZLDataManager.init()
-//        let s =  CLLocation.init(latitude: 100.0, longitude: 120.1)
-//        let e =  CLLocation.init(latitude: 40.0, longitude: 50.1)
-//        let start = ZLLocation.init(location: s, zlIdentify: ZLIdentify.human)
-//        let end = ZLLocation.init(location: e, zlIdentify: ZLIdentify.human)
-//        let array = [start,end,start,end,start,end,start,end]
-//        zldata.insertData(start, end, array)
         
-        zldata.selectData()
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 10
+        return locations.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
