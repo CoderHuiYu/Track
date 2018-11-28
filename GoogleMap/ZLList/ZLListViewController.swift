@@ -25,8 +25,19 @@ class ZLListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: "insertNodeSuccess"), object: nil)
     }
     
+    @objc func refresh() {
+        
+        print("------------")
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+ 
 }
 
 extension ZLListViewController : UITableViewDelegate,UITableViewDataSource{
@@ -38,14 +49,14 @@ extension ZLListViewController : UITableViewDelegate,UITableViewDataSource{
     // MARK:UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let zldata =  ZLDataManager.init()
-//        let s =  CLLocation.init(latitude: 100.0, longitude: 120.1)
-//        let e =  CLLocation.init(latitude: 40.0, longitude: 50.1)
-//        let start = ZLLocation.init(location: s, zlIdentify: ZLIdentify.human)
-//        let end = ZLLocation.init(location: e, zlIdentify: ZLIdentify.human)
-//        let array = [start,end,start,end,start,end,start,end]
-//        zldata.insertData(start, end, array)
+        let s =  CLLocation.init(latitude: 100.0, longitude: 120.1)
+        let e =  CLLocation.init(latitude: 40.0, longitude: 50.1)
+        let start = ZLLocation.init(location: s, zlIdentify: ZLIdentify.human)
+        let end = ZLLocation.init(location: e, zlIdentify: ZLIdentify.human)
+        let array = [start,end,start,end,start,end,start,end]
+        zldata.insertData(start, end, array)
         
-        zldata.selectData()
+//        zldata.selectData()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1

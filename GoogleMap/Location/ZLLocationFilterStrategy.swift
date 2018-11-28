@@ -70,6 +70,16 @@ class ZLLocationFilterStrategy: NSObject {
             let (flag,nodeLocation) = backtracking(self.loactionArray, currentL)
             if flag == true {
                 isFindNode = true
+                var startNode:ZLLocation?
+                if self.nodeArray.count > 0 {
+                    startNode = self.nodeArray.last
+                }else{
+                    startNode =  self.loactionArray.first
+                }
+               
+                //fisrt insert to the sqlite
+                ZLDataManager.init().insertData(startNode!, nodeLocation, self.loactionArray)
+                self.loactionArray.removeAll()
                 self.nodeArray.append(nodeLocation)
             }
         }

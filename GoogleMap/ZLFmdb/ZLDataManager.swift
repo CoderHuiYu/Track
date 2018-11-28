@@ -9,7 +9,7 @@
 import UIKit
 
 class ZLDataManager: NSObject {
-    
+   
     func insertData(_ startNode : ZLLocation,_ endNode : ZLLocation,_ locations:Array<ZLLocation>) {
         
         guard locations.count > 0 else {

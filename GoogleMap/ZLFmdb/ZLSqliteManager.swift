@@ -87,6 +87,7 @@ class ZLSqliteManager: NSObject {
             do{
                 try db.executeUpdate(sqlUpdatefirst + sqlUpdateLast, values: values)
                 print("数据库操作==== 添加数据成功！")
+                NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "insertNodeSuccess")))
             }catch{
                 print(db.lastErrorMessage())
             }
