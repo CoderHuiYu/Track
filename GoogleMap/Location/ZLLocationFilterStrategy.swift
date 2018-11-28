@@ -118,36 +118,3 @@ class ZLLocationFilterStrategy: NSObject {
 
 
 
-
-
-
-
-
-
-
-
-// MARK: - 地理编码
-extension ZLLocationFilterStrategy {
-    
-    /// 反地理编码
-    ///
-    /// - Parameter location: CLLocation
-    /// - Returns: name
-    func reverseGeocoder(_ location: CLLocation, completion:@escaping ((_ name: String?)->())) {
-        let coder = CLGeocoder()
-        coder.reverseGeocodeLocation(location) { (placemarks, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                completion(nil)
-            }
-            guard let placemarksArray = placemarks else { return }
-            if placemarksArray.count > 0 {
-                let placeMark = placemarksArray.first!
-                print(placeMark)
-                completion(placeMark.name)
-            } else {
-                completion(nil)
-            }
-        }
-    }
-}

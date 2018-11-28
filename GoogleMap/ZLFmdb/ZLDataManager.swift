@@ -62,6 +62,7 @@ class ZLDataManager: NSObject {
 }
 
 extension ZLDataManager {
+    
     //数组转json
     func getJSONStringFromArray(array:Array<Any>) -> String {
         

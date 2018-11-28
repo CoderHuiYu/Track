@@ -32,14 +32,37 @@ class ZLListViewController: UIViewController {
         view.addSubview(tableView)
 
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: "insertNodeSuccess"), object: nil)
-
+        
         let zldata =  ZLDataManager.init()
         guard let los = zldata.selectData() as? [ZLTrackModel] else { return }
         locations = los
+        
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+//        for index in 1...5 {
+//
+//            let zldata =  ZLDataManager.init()
+//            let s =  CLLocation.init(latitude: 100.0, longitude: 120.1)
+//            let e =  CLLocation.init(latitude: 100.1, longitude: 120.2)
+//            let start = ZLLocation.init(location: s, zlIdentify: ZLIdentify.human)
+//            let end = ZLLocation.init(location: e, zlIdentify: ZLIdentify.human)
+//            let array = [start,end,start,end,start,end,start,end]
+//            zldata.insertData(start, end, array)
+//
+//        }
     }
     
     @objc func refresh() {
         
+        let zldata =  ZLDataManager.init()
+        guard let los = zldata.selectData() as? [ZLTrackModel] else { return }
+        locations = los
+
         print("------------")
     }
     
@@ -54,11 +77,13 @@ extension ZLListViewController : UITableViewDelegate,UITableViewDataSource{
     // MARK:UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: trackCellReusedIdentifier, for: indexPath) as! ZLListCell
-        
+        cell.model = locations[indexPath.row]
         return cell
     }
     // MARK:UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

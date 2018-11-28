@@ -15,15 +15,56 @@ class ZLListCell: UITableViewCell {
     @IBOutlet weak var mapView: GMSMapView!
     var objMapModel = MapPathViewModel()
     
+    var model: ZLTrackModel? {
+        didSet {
+            guard let model = model else {
+                return
+            }
+            objMapModel.jsonDataRead(model)
+            
+            guard let startNode = model.startNode, let startLocation = startNode.location else {
+                return
+            }
+            
+            self.startTextField.text = "\(startLocation.coordinate.latitude) + \(startLocation.coordinate.longitude)"
+            
+//            ZLLocationManager.shared.reverseGeocoder(startLocation) { (str) in
+//                guard let name = str else {
+//                    self.startTextField.text = "\(startLocation.coordinate.latitude) + \(startLocation.coordinate.longitude)"
+//                    return
+//                }
+//                self.startTextField.text = name
+//            }
+            
+            
+            guard let endNode = model.endNode, let endLocation = endNode.location else {
+                return
+            }
+            
+            self.endTextField.text = "\(endLocation.coordinate.latitude) + \(endLocation.coordinate.longitude)"
+            
+//            ZLLocationManager.shared.reverseGeocoder(endLocation) { (str) in
+//                guard let name = str else {
+//                    self.endTextField.text = "\(endLocation.coordinate.latitude) + \(endLocation.coordinate.longitude)"
+//                    return
+//                }
+//                self.endTextField.text = name
+//            }
+            
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
 //        mapView.settings.scrollGestures = false
 //        mapView.settings.zoomGestures = false
         mapView.isUserInteractionEnabled = false
+        startTextField.isUserInteractionEnabled = false
+        endTextField.isUserInteractionEnabled = false
         
         objMapModel.delegate = self
-//        objMapModel.jsonDataRead()
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -68,7 +68,7 @@ extension ZLLocationManager: CLLocationManagerDelegate {
     // 监听location变化
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // If it's a relatively recent event, turn off updates to save power.
-        
+        print(locations.first)
         guard let currentLocation = locations.last else { return }
         guard let theLastLocation = lastLocation else {
             lastLocation = currentLocation
@@ -95,3 +95,27 @@ extension ZLLocationManager: CLLocationManagerDelegate {
 }
 
 
+
+extension ZLLocationManager {
+    /// 反地理编码
+    ///
+    /// - Parameter location: CLLocation
+    /// - Returns: name
+    func reverseGeocoder(_ location: CLLocation, completion:@escaping ((_ name: String?)->())) {
+        let coder = CLGeocoder()
+        coder.reverseGeocodeLocation(location) { (placemarks, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                completion(nil)
+            }
+            guard let placemarksArray = placemarks else { return }
+            if placemarksArray.count > 0 {
+                let placeMark = placemarksArray.first!
+                print(placeMark)
+                completion(placeMark.name)
+            } else {
+                completion(nil)
+            }
+        }
+    }
+}
