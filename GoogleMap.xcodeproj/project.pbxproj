@@ -70,6 +70,7 @@
 		0C2C9FE521AE93EB0009844E /* ZLDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLDataManager.swift; sourceTree = "<group>"; };
 		184D7CAE21AE37D400096BDA /* ZLListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLListCell.swift; sourceTree = "<group>"; };
 		184D7CAF21AE37D400096BDA /* ZLListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZLListCell.xib; sourceTree = "<group>"; };
+		184D7CB321AEA17B00096BDA /* GoogleMap-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GoogleMap-Bridging-Header.h"; sourceTree = "<group>"; };
 		18F5DCC521ACED4100D3352D /* ZLLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLLocationManager.swift; sourceTree = "<group>"; };
 		3AFD5A785E89BFB21D1610AD /* Pods-GoogleMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoogleMap/Pods-GoogleMap.debug.xcconfig"; sourceTree = "<group>"; };
 		836878E12E5071D2B1134ABA /* Pods-GoogleMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoogleMap/Pods-GoogleMap.release.xcconfig"; sourceTree = "<group>"; };
@@ -129,6 +130,7 @@
 		0C2C9F8621ABC04B0009844E /* GoogleMap */ = {
 			isa = PBXGroup;
 			children = (
+				184D7CB321AEA17B00096BDA /* GoogleMap-Bridging-Header.h */,
 				0C2C9FE121AE93EB0009844E /* ZLFmdb */,
 				184D7CAB21AE36DE00096BDA /* ZLList */,
 				18F5DCC421ACECF700D3352D /* Location */,
@@ -239,7 +241,6 @@
 				0C2C9F8021ABC04B0009844E /* Sources */,
 				0C2C9F8121ABC04B0009844E /* Frameworks */,
 				0C2C9F8221ABC04B0009844E /* Resources */,
-				E48646FFDA4A4B73E9C46C02 /* [CP] Embed Pods Frameworks */,
 				3AE2056821E3CD6080F74F9D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -401,21 +402,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E48646FFDA4A4B73E9C46C02 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoogleMap/Pods-GoogleMap-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -622,6 +608,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = yuhui.com.GoogleMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/GoogleMap/GoogleMap-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -642,6 +629,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = yuhui.com.GoogleMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/GoogleMap/GoogleMap-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
