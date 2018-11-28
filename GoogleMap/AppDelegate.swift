@@ -23,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSPlacesClient.provideAPIKey(api_key)
         GMSServices.provideAPIKey(api_key)
        
-        
         self.window = UIWindow(frame:UIScreen.main.bounds)
         self.window?.backgroundColor = UIColor.white
         self.window?.makeKeyAndVisible()
