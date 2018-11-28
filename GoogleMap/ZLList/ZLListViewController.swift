@@ -8,23 +8,23 @@
 
 import UIKit
 
+private let trackCellReusedIdentifier = "trackCellReusedIdentifier"
+
 class ZLListViewController: UIViewController {
-    let trackCellReusedIdentifier = "trackCellReusedIdentifier"
     
-    lazy var tabelView : UITableView = {
-        let tabelView = UITableView.init(frame: self.view.frame, style: UITableView.Style.grouped)
-        tabelView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        tabelView.register(ZLTrackTableViewCell.classForCoder(), forCellReuseIdentifier: trackCellReusedIdentifier)
-        
-        return tabelView
+    lazy var tableView : UITableView = {
+        let tableView = UITableView.init(frame: self.view.frame, style: UITableView.Style.grouped)
+        tableView.separatorStyle = .none
+        tableView.register(UINib.init(nibName: "ZLListCell", bundle: nil), forCellReuseIdentifier: trackCellReusedIdentifier)
+        tableView.delegate = self
+        tableView.dataSource = self
+        return tableView
     }()
  
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabelView.delegate = self
-        tabelView.dataSource = self
-        self.view.addSubview(tabelView)
+        view.addSubview(tableView)
     }
     
 }
@@ -32,9 +32,7 @@ class ZLListViewController: UIViewController {
 extension ZLListViewController : UITableViewDelegate,UITableViewDataSource{
     // MARK:UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : ZLTrackTableViewCell = tabelView.dequeueReusableCell(withIdentifier: trackCellReusedIdentifier, for: indexPath) as! ZLTrackTableViewCell
-        
-        cell.backgroundColor = UIColor.lightGray
+        let cell = tableView.dequeueReusableCell(withIdentifier: trackCellReusedIdentifier, for: indexPath) as! ZLListCell
         return cell
     }
     // MARK:UITableViewDelegate
@@ -55,7 +53,7 @@ extension ZLListViewController : UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 220
     }
     
     
