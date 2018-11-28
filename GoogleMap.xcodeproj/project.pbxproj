@@ -628,6 +628,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = yuhui.com.GoogleMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/yuhui/Documents/1.Zilly/Track/GoogleMap/GoogleMap-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -648,6 +649,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = yuhui.com.GoogleMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/yuhui/Documents/1.Zilly/Track/GoogleMap/GoogleMap-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
