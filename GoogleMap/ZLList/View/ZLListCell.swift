@@ -10,6 +10,8 @@ import UIKit
 import GoogleMaps
 class ZLListCell: UITableViewCell {
     
+    @IBOutlet weak var mileLabel: UILabel!
+    
     @IBOutlet weak var startTextField: UITextField!
     @IBOutlet weak var endTextField: UITextField!
     @IBOutlet weak var mapView: GMSMapView!
@@ -17,9 +19,11 @@ class ZLListCell: UITableViewCell {
     
     var model: ZLTrackModel? {
         didSet {
+            
             guard let model = model else {
                 return
             }
+            
             objMapModel.jsonDataRead(model)
             
             guard let startNode = model.startNode, let startLocation = startNode.location else {
@@ -27,7 +31,9 @@ class ZLListCell: UITableViewCell {
             }
             
             self.startTextField.text = "\(startLocation.coordinate.latitude) + \(startLocation.coordinate.longitude)"
+        
             
+            self.mileLabel.text = "\(1000)"
 //            ZLLocationManager.shared.reverseGeocoder(startLocation) { (str) in
 //                guard let name = str else {
 //                    self.startTextField.text = "\(startLocation.coordinate.latitude) + \(startLocation.coordinate.longitude)"
