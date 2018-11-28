@@ -45,12 +45,12 @@ class ZLLocationFilterStrategy: NSObject {
         
         let currentTime = currentLocation.timestamp.timeIntervalSince1970
         let lastTime = lastLocation.timestamp.timeIntervalSince1970
-        let tempTime = (currentTime - lastTime)
+        let duration = (currentTime - lastTime)
         
         // 获取两点之间的距离
         let distance = currentLocation.distance(from: lastLocation)
         
-        if tempTime < carTimeThreshold && distance > cardDistanceThreshold {
+        if duration < carTimeThreshold && distance > cardDistanceThreshold {
             //now is car
             isFindNode = false
             let zlidentify = ZLIdentify.car
@@ -81,26 +81,26 @@ class ZLLocationFilterStrategy: NSObject {
             return (false,currentLocation)
         }
         
-        var temp : ZLLocation?
+        var nodeLocation : ZLLocation?
         for  zlo in locations.reversed() {
             if zlo.zlIdentify == ZLIdentify.car {
-                temp = zlo
+                nodeLocation = zlo
                 break
             }
         }
         
-        guard temp != nil else {
+        guard nodeLocation != nil else {
               return (false,currentLocation)
         }
         
         let currentTime = currentLocation.location!.timestamp.timeIntervalSince1970
-        let lastTime = temp!.location!.timestamp.timeIntervalSince1970
-        let tempTime = (currentTime - lastTime)
+        let lastTime = nodeLocation!.location!.timestamp.timeIntervalSince1970
+        let duration = (currentTime - lastTime)
         
-        let distance = currentLocation.location!.distance(from: temp!.location!)
-        if tempTime > humanTimeThreshold && distance < humanRangeThreshold {
+        let distance = currentLocation.location!.distance(from: nodeLocation!.location!)
+        if duration > humanTimeThreshold && distance < humanRangeThreshold {
             //now find the node
-            return (true,temp!)
+            return (true,nodeLocation!)
         }
         return (false,currentLocation)
     }
