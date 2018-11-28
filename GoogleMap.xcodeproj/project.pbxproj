@@ -16,7 +16,6 @@
 		0C2C9FA821ABC04E0009844E /* GoogleMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C9FA721ABC04E0009844E /* GoogleMapUITests.swift */; };
 		0C2C9FC021AD36620009844E /* ZLLocationFilterStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C9FBF21AD36620009844E /* ZLLocationFilterStrategy.swift */; };
 		0C2C9FC421AE28080009844E /* ZLListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C9FC321AE28080009844E /* ZLListViewController.swift */; };
-
 		184D7CB021AE37D400096BDA /* ZLListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184D7CAE21AE37D400096BDA /* ZLListCell.swift */; };
 		184D7CB121AE37D400096BDA /* ZLListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184D7CAF21AE37D400096BDA /* ZLListCell.xib */; };
 		18F5DCC621ACED4100D3352D /* ZLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F5DCC521ACED4100D3352D /* ZLLocationManager.swift */; };
@@ -56,13 +55,13 @@
 		0C2C9FA921ABC04E0009844E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C2C9FBF21AD36620009844E /* ZLLocationFilterStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLLocationFilterStrategy.swift; sourceTree = "<group>"; };
 		0C2C9FC321AE28080009844E /* ZLListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLListViewController.swift; sourceTree = "<group>"; };
-		0C2C9FC521AE28D00009844E /* ZLTrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLTrackTableViewCell.swift; sourceTree = "<group>"; };
 		0C2C9FC721AE3B500009844E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		0C2C9FC921AE3B5F0009844E /* libFMDB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFMDB.a; sourceTree = BUILT_PRODUCTS_DIR; };
 
 		184D7CAE21AE37D400096BDA /* ZLListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLListCell.swift; sourceTree = "<group>"; };
 		184D7CAF21AE37D400096BDA /* ZLListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZLListCell.xib; sourceTree = "<group>"; };
-
+		184D7CAE21AE37D400096BDA /* ZLListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLListCell.swift; sourceTree = "<group>"; };
+		184D7CAF21AE37D400096BDA /* ZLListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZLListCell.xib; sourceTree = "<group>"; };
 		18F5DCC521ACED4100D3352D /* ZLLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLLocationManager.swift; sourceTree = "<group>"; };
 		3AFD5A785E89BFB21D1610AD /* Pods-GoogleMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoogleMap/Pods-GoogleMap.debug.xcconfig"; sourceTree = "<group>"; };
 		836878E12E5071D2B1134ABA /* Pods-GoogleMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoogleMap/Pods-GoogleMap.release.xcconfig"; sourceTree = "<group>"; };
