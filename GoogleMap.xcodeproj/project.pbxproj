@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C2C9F8821ABC04B0009844E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C9F8721ABC04B0009844E /* AppDelegate.swift */; };
+		0C2C9F8A21ABC04B0009844E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C9F8921ABC04B0009844E /* ViewController.swift */; };
 		0C2C9F8D21ABC04B0009844E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C2C9F8B21ABC04B0009844E /* Main.storyboard */; };
 		0C2C9F8F21ABC04E0009844E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C2C9F8E21ABC04E0009844E /* Assets.xcassets */; };
 		0C2C9F9221ABC04E0009844E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C2C9F9021ABC04E0009844E /* LaunchScreen.storyboard */; };
@@ -15,11 +16,16 @@
 		0C2C9FA821ABC04E0009844E /* GoogleMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C9FA721ABC04E0009844E /* GoogleMapUITests.swift */; };
 		0C2C9FC021AD36620009844E /* ZLLocationFilterStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C9FBF21AD36620009844E /* ZLLocationFilterStrategy.swift */; };
 		0C2C9FC421AE28080009844E /* ZLListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C9FC321AE28080009844E /* ZLListViewController.swift */; };
+		0C2C9FE621AE93EB0009844E /* ZLTrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C9FE021AE93EB0009844E /* ZLTrackModel.swift */; };
+		0C2C9FE721AE93EB0009844E /* ZLhhhhh.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C9FE221AE93EB0009844E /* ZLhhhhh.m */; };
+		0C2C9FE821AE93EB0009844E /* ZLSqliteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C9FE321AE93EB0009844E /* ZLSqliteManager.swift */; };
+		0C2C9FE921AE93EB0009844E /* ZLDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C9FE521AE93EB0009844E /* ZLDataManager.swift */; };
 		184D7CB021AE37D400096BDA /* ZLListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184D7CAE21AE37D400096BDA /* ZLListCell.swift */; };
 		184D7CB121AE37D400096BDA /* ZLListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184D7CAF21AE37D400096BDA /* ZLListCell.xib */; };
 		18F5DCC621ACED4100D3352D /* ZLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F5DCC521ACED4100D3352D /* ZLLocationManager.swift */; };
 		56F2D43E218C1E6515593D51 /* libPods-GoogleMap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF2000902A5D4119D9A7DA47 /* libPods-GoogleMap.a */; };
-		FED6DFE121AC05DA00F8943F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED6DFDD21AC05DA00F8943F /* ViewController.swift */; };
+		FED6E19B21AE51B500F8943F /* MapPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED6E19A21AE51AB00F8943F /* MapPath.swift */; };
+		FED6E19D21AE51D300F8943F /* MapPathViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED6E19C21AE51D300F8943F /* MapPathViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +48,7 @@
 /* Begin PBXFileReference section */
 		0C2C9F8421ABC04B0009844E /* GoogleMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogleMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C2C9F8721ABC04B0009844E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0C2C9F8921ABC04B0009844E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0C2C9F8C21ABC04B0009844E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0C2C9F8E21ABC04E0009844E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C2C9F9121ABC04E0009844E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,12 +63,19 @@
 		0C2C9FC321AE28080009844E /* ZLListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLListViewController.swift; sourceTree = "<group>"; };
 		0C2C9FC721AE3B500009844E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		0C2C9FC921AE3B5F0009844E /* libFMDB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFMDB.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C2C9FE021AE93EB0009844E /* ZLTrackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLTrackModel.swift; sourceTree = "<group>"; };
+		0C2C9FE221AE93EB0009844E /* ZLhhhhh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLhhhhh.m; sourceTree = "<group>"; };
+		0C2C9FE321AE93EB0009844E /* ZLSqliteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLSqliteManager.swift; sourceTree = "<group>"; };
+		0C2C9FE421AE93EB0009844E /* ZLhhhhh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLhhhhh.h; sourceTree = "<group>"; };
+		0C2C9FE521AE93EB0009844E /* ZLDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLDataManager.swift; sourceTree = "<group>"; };
 		184D7CAE21AE37D400096BDA /* ZLListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLListCell.swift; sourceTree = "<group>"; };
 		184D7CAF21AE37D400096BDA /* ZLListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZLListCell.xib; sourceTree = "<group>"; };
+		184D7CB321AEA17B00096BDA /* GoogleMap-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GoogleMap-Bridging-Header.h"; sourceTree = "<group>"; };
 		18F5DCC521ACED4100D3352D /* ZLLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLLocationManager.swift; sourceTree = "<group>"; };
 		3AFD5A785E89BFB21D1610AD /* Pods-GoogleMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoogleMap/Pods-GoogleMap.debug.xcconfig"; sourceTree = "<group>"; };
 		836878E12E5071D2B1134ABA /* Pods-GoogleMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoogleMap/Pods-GoogleMap.release.xcconfig"; sourceTree = "<group>"; };
-		FED6DFDD21AC05DA00F8943F /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FED6E19A21AE51AB00F8943F /* MapPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPath.swift; sourceTree = "<group>"; };
+		FED6E19C21AE51D300F8943F /* MapPathViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPathViewModel.swift; sourceTree = "<group>"; };
 		FF2000902A5D4119D9A7DA47 /* libPods-GoogleMap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GoogleMap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -116,13 +130,12 @@
 		0C2C9F8621ABC04B0009844E /* GoogleMap */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
+				184D7CB321AEA17B00096BDA /* GoogleMap-Bridging-Header.h */,
+				0C2C9FE121AE93EB0009844E /* ZLFmdb */,
 				184D7CAB21AE36DE00096BDA /* ZLList */,
 				18F5DCC421ACECF700D3352D /* Location */,
-=======
-				FED6DFDD21AC05DA00F8943F /* ViewController.swift */,
->>>>>>> origin/evan
 				0C2C9F8721ABC04B0009844E /* AppDelegate.swift */,
+				0C2C9F8921ABC04B0009844E /* ViewController.swift */,
 				0C2C9F8B21ABC04B0009844E /* Main.storyboard */,
 				0C2C9F8E21ABC04E0009844E /* Assets.xcassets */,
 				0C2C9F9021ABC04E0009844E /* LaunchScreen.storyboard */,
@@ -149,10 +162,21 @@
 			path = GoogleMapUITests;
 			sourceTree = "<group>";
 		};
+		0C2C9FE121AE93EB0009844E /* ZLFmdb */ = {
+			isa = PBXGroup;
+			children = (
+				0C2C9FE221AE93EB0009844E /* ZLhhhhh.m */,
+				0C2C9FE321AE93EB0009844E /* ZLSqliteManager.swift */,
+				0C2C9FE421AE93EB0009844E /* ZLhhhhh.h */,
+				0C2C9FE521AE93EB0009844E /* ZLDataManager.swift */,
+			);
+			path = ZLFmdb;
+			sourceTree = "<group>";
+		};
 		184D7CAB21AE36DE00096BDA /* ZLList */ = {
 			isa = PBXGroup;
 			children = (
-				184D7CAD21AE375C00096BDA /* Model */,
+				FED6E19921AE4FBE00F8943F /* Model */,
 				184D7CAC21AE375200096BDA /* View */,
 				0C2C9FC321AE28080009844E /* ZLListViewController.swift */,
 			);
@@ -166,13 +190,6 @@
 				184D7CAF21AE37D400096BDA /* ZLListCell.xib */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		184D7CAD21AE375C00096BDA /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		18F5DCC421ACECF700D3352D /* Location */ = {
@@ -203,6 +220,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FED6E19921AE4FBE00F8943F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0C2C9FE021AE93EB0009844E /* ZLTrackModel.swift */,
+				FED6E19A21AE51AB00F8943F /* MapPath.swift */,
+				FED6E19C21AE51D300F8943F /* MapPathViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -214,7 +241,6 @@
 				0C2C9F8021ABC04B0009844E /* Sources */,
 				0C2C9F8121ABC04B0009844E /* Frameworks */,
 				0C2C9F8221ABC04B0009844E /* Resources */,
-				E48646FFDA4A4B73E9C46C02 /* [CP] Embed Pods Frameworks */,
 				3AE2056821E3CD6080F74F9D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -378,21 +404,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E48646FFDA4A4B73E9C46C02 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GoogleMap/Pods-GoogleMap-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -400,16 +411,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
+				0C2C9FE621AE93EB0009844E /* ZLTrackModel.swift in Sources */,
+				FED6E19D21AE51D300F8943F /* MapPathViewModel.swift in Sources */,
+				0C2C9FE821AE93EB0009844E /* ZLSqliteManager.swift in Sources */,
+				0C2C9FE721AE93EB0009844E /* ZLhhhhh.m in Sources */,
 				0C2C9FC421AE28080009844E /* ZLListViewController.swift in Sources */,
 				0C2C9F8A21ABC04B0009844E /* ViewController.swift in Sources */,
 				0C2C9FC021AD36620009844E /* ZLLocationFilterStrategy.swift in Sources */,
 				18F5DCC621ACED4100D3352D /* ZLLocationManager.swift in Sources */,
-=======
-				FED6DFE121AC05DA00F8943F /* ViewController.swift in Sources */,
->>>>>>> origin/evan
 				0C2C9F8821ABC04B0009844E /* AppDelegate.swift in Sources */,
+				0C2C9FE921AE93EB0009844E /* ZLDataManager.swift in Sources */,
 				184D7CB021AE37D400096BDA /* ZLListCell.swift in Sources */,
+				FED6E19B21AE51B500F8943F /* MapPath.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,6 +608,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = yuhui.com.GoogleMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/GoogleMap/GoogleMap-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -615,6 +629,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = yuhui.com.GoogleMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/GoogleMap/GoogleMap-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
