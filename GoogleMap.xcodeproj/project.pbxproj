@@ -149,7 +149,7 @@
 		184D7CAB21AE36DE00096BDA /* ZLList */ = {
 			isa = PBXGroup;
 			children = (
-				184D7CAD21AE375C00096BDA /* Model */,
+				FED6E19921AE4FBE00F8943F /* Model */,
 				184D7CAC21AE375200096BDA /* View */,
 				0C2C9FC321AE28080009844E /* ZLListViewController.swift */,
 			);
@@ -163,13 +163,6 @@
 				184D7CAF21AE37D400096BDA /* ZLListCell.xib */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		184D7CAD21AE375C00096BDA /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		18F5DCC421ACECF700D3352D /* Location */ = {
@@ -198,6 +191,13 @@
 				836878E12E5071D2B1134ABA /* Pods-GoogleMap.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FED6E19921AE4FBE00F8943F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
