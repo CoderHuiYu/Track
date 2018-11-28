@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import GoogleMaps
 private let trackCellReusedIdentifier = "trackCellReusedIdentifier"
 
 class ZLListViewController: UIViewController {
@@ -25,6 +25,8 @@ class ZLListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
+        
+      
     }
     
 }
@@ -36,6 +38,17 @@ extension ZLListViewController : UITableViewDelegate,UITableViewDataSource{
         return cell
     }
     // MARK:UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let zldata =  ZLDataManager.init()
+//        let s =  CLLocation.init(latitude: 100.0, longitude: 120.1)
+//        let e =  CLLocation.init(latitude: 40.0, longitude: 50.1)
+//        let start = ZLLocation.init(location: s, zlIdentify: ZLIdentify.human)
+//        let end = ZLLocation.init(location: e, zlIdentify: ZLIdentify.human)
+//        let array = [start,end,start,end,start,end,start,end]
+//        zldata.insertData(start, end, array)
+        
+        zldata.selectData()
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -55,9 +68,5 @@ extension ZLListViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 220
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    
+
 }
