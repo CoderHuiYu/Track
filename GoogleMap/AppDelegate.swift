@@ -11,7 +11,7 @@ import GoogleMaps
 import GooglePlaces
 
 let api_key = "AIzaSyCw9gZO5CPBRlvMmoNqThAtSbWDRREJgso"
-
+public let tabelName = "nodeTable"
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
         GMSPlacesClient.provideAPIKey(api_key)
         GMSServices.provideAPIKey(api_key)
        
@@ -31,6 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigation = UINavigationController(rootViewController: zllistVc)
         self.window?.rootViewController = navigation
     
+        
+        ZLSqliteManager.sharInstance.sqlPath("Track")
+        let array = ["start_latitude","start_longitude","start_timestamp","end_latitude","end_longitude","end_timestamp","locations"]
+        let arrayType = ["text","text","text","text","text","text","text"]
+        
+        ZLSqliteManager.sharInstance.sqlCreateTable(tableName: tabelName, arFields:array , arFieldsType: arrayType)
+        
         return true
     }
 
