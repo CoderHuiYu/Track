@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C2C9F8821ABC04B0009844E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C9F8721ABC04B0009844E /* AppDelegate.swift */; };
+		0C2C9F8A21ABC04B0009844E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C9F8921ABC04B0009844E /* ViewController.swift */; };
 		0C2C9F8D21ABC04B0009844E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C2C9F8B21ABC04B0009844E /* Main.storyboard */; };
 		0C2C9F8F21ABC04E0009844E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C2C9F8E21ABC04E0009844E /* Assets.xcassets */; };
 		0C2C9F9221ABC04E0009844E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C2C9F9021ABC04E0009844E /* LaunchScreen.storyboard */; };
@@ -19,7 +20,8 @@
 		184D7CB121AE37D400096BDA /* ZLListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184D7CAF21AE37D400096BDA /* ZLListCell.xib */; };
 		18F5DCC621ACED4100D3352D /* ZLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F5DCC521ACED4100D3352D /* ZLLocationManager.swift */; };
 		56F2D43E218C1E6515593D51 /* libPods-GoogleMap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF2000902A5D4119D9A7DA47 /* libPods-GoogleMap.a */; };
-		FED6DFE121AC05DA00F8943F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED6DFDD21AC05DA00F8943F /* ViewController.swift */; };
+		FED6E19B21AE51B500F8943F /* MapPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED6E19A21AE51AB00F8943F /* MapPath.swift */; };
+		FED6E19D21AE51D300F8943F /* MapPathViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED6E19C21AE51D300F8943F /* MapPathViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,7 @@
 /* Begin PBXFileReference section */
 		0C2C9F8421ABC04B0009844E /* GoogleMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogleMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C2C9F8721ABC04B0009844E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0C2C9F8921ABC04B0009844E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0C2C9F8C21ABC04B0009844E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0C2C9F8E21ABC04E0009844E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C2C9F9121ABC04E0009844E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -61,7 +64,8 @@
 		18F5DCC521ACED4100D3352D /* ZLLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLLocationManager.swift; sourceTree = "<group>"; };
 		3AFD5A785E89BFB21D1610AD /* Pods-GoogleMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoogleMap/Pods-GoogleMap.debug.xcconfig"; sourceTree = "<group>"; };
 		836878E12E5071D2B1134ABA /* Pods-GoogleMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoogleMap/Pods-GoogleMap.release.xcconfig"; sourceTree = "<group>"; };
-		FED6DFDD21AC05DA00F8943F /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FED6E19A21AE51AB00F8943F /* MapPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPath.swift; sourceTree = "<group>"; };
+		FED6E19C21AE51D300F8943F /* MapPathViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPathViewModel.swift; sourceTree = "<group>"; };
 		FF2000902A5D4119D9A7DA47 /* libPods-GoogleMap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GoogleMap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -116,13 +120,10 @@
 		0C2C9F8621ABC04B0009844E /* GoogleMap */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				184D7CAB21AE36DE00096BDA /* ZLList */,
 				18F5DCC421ACECF700D3352D /* Location */,
-=======
-				FED6DFDD21AC05DA00F8943F /* ViewController.swift */,
->>>>>>> origin/evan
 				0C2C9F8721ABC04B0009844E /* AppDelegate.swift */,
+				0C2C9F8921ABC04B0009844E /* ViewController.swift */,
 				0C2C9F8B21ABC04B0009844E /* Main.storyboard */,
 				0C2C9F8E21ABC04E0009844E /* Assets.xcassets */,
 				0C2C9F9021ABC04E0009844E /* LaunchScreen.storyboard */,
@@ -199,6 +200,8 @@
 		FED6E19921AE4FBE00F8943F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FED6E19A21AE51AB00F8943F /* MapPath.swift */,
+				FED6E19C21AE51D300F8943F /* MapPathViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -400,16 +403,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
+				FED6E19D21AE51D300F8943F /* MapPathViewModel.swift in Sources */,
 				0C2C9FC421AE28080009844E /* ZLListViewController.swift in Sources */,
 				0C2C9F8A21ABC04B0009844E /* ViewController.swift in Sources */,
 				0C2C9FC021AD36620009844E /* ZLLocationFilterStrategy.swift in Sources */,
 				18F5DCC621ACED4100D3352D /* ZLLocationManager.swift in Sources */,
-=======
-				FED6DFE121AC05DA00F8943F /* ViewController.swift in Sources */,
->>>>>>> origin/evan
 				0C2C9F8821ABC04B0009844E /* AppDelegate.swift in Sources */,
 				184D7CB021AE37D400096BDA /* ZLListCell.swift in Sources */,
+				FED6E19B21AE51B500F8943F /* MapPath.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
