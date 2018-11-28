@@ -22,6 +22,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         GMSPlacesClient.provideAPIKey(api_key)
         GMSServices.provideAPIKey(api_key)
+       
+        self.window = UIWindow(frame:UIScreen.main.bounds)
+        self.window?.backgroundColor = UIColor.white
+        self.window?.makeKeyAndVisible()
+       
+        let zllistVc = ZLListViewController.init()
+        let navigation = UINavigationController(rootViewController: zllistVc)
+        self.window?.rootViewController = navigation
+    
         return true
     }
 
