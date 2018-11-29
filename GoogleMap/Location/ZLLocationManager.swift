@@ -10,7 +10,6 @@ import UIKit
 import CoreLocation
 protocol ZLLocationManagerDelegateProtocol: NSObjectProtocol {
     func locationManager(didUpdateLocation location: CLLocation)
-   
 }
 class ZLLocationManager: NSObject {
 
@@ -19,24 +18,24 @@ class ZLLocationManager: NSObject {
 
     weak var delegate: ZLLocationManagerDelegateProtocol?
     
-    /*  if you are monitoring regions or using the significant-change location service in your app, there are situations where you must start location services at launch time. Apps using those services can be terminated and subsequently relaunched when new location events arrive. Although the app itself is relaunched, location services are not started automatically. When an app is relaunched because of a location update, the launch options dictionary passed to your application:willFinishLaunchingWithOptions: or application:didFinishLaunchingWithOptions: method contains the UIApplicationLaunchOptionsLocationKey key. The presence of that key signals that new location data is waiting to be delivered to your app. To obtain that data, you must create a new CLLocationManager object and restart the location services that you had running prior to your app’s termination. When you restart those services, the location manager delivers all pending location updates to its delegate.
-    */
     lazy var locationManager: CLLocationManager = {
         let locationManager = CLLocationManager()
         
-        // 省电
-        // When this property is set to YES, Core Location pauses location updates (and powers down the location hardware) whenever it makes sense to do so, such as when the user is unlikely to be moving anyway. (Core Location also pauses updates when it can’t obtain a location fix.)
-//        locationManager.pausesLocationUpdatesAutomatically = true
-        // Assign an appropriate value to the location manager’s activityType property. The value in this property helps the location manager determine when it is safe to pause location updates. For an app that provides turn-by-turn automobile navigation, setting the property to CLActivityTypeAutomotiveNavigation causes the location manager to pause events only when the user does not move a significant distance over a period of time.
-        locationManager.activityType = CLActivityType.automotiveNavigation // 汽车导航
-        
-//        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        // 隐私服务请求
+        locationManager.requestAlwaysAuthorization()
+        // Set an accuracy level. The higher, the better for energy.
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        locationManager.distanceFilter = 50
+        
+        locationManager.pausesLocationUpdatesAutomatically = true
         // 允许后台
         locationManager.allowsBackgroundLocationUpdates = true
-        // 新事件回调的阈值
-        locationManager.distanceFilter = 5
+
+        locationManager.activityType = CLActivityType.automotiveNavigation // 汽车导航
+        
         locationManager.delegate = self
+        
         return locationManager
     }()
     
@@ -47,8 +46,6 @@ class ZLLocationManager: NSObject {
         super.init()
         
         filterStrategy = ZLLocationFilterStrategy.init()
-        // 隐私服务请求
-        locationManager.requestAlwaysAuthorization()
         // 标准更改位置
         locationManager.startUpdatingLocation()
         // 重大位置更改
@@ -64,11 +61,13 @@ extension ZLLocationManager: CLLocationManagerDelegate {
         print(status)
     }
 
-    
     // 监听location变化
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // If it's a relatively recent event, turn off updates to save power.
-        print(locations.first)
+        print(locations.first!)
+//        locations.first?.coordinate.longitude
+        NotificationCenter.default.post(name: NSNotification.Name("updateLocation"), object: nil, userInfo: ["latitude":locations.first!.coordinate.latitude,"longitude":locations.first!.coordinate.longitude])
+        
         guard let currentLocation = locations.last else { return }
         guard let theLastLocation = lastLocation else {
             lastLocation = currentLocation
@@ -82,14 +81,6 @@ extension ZLLocationManager: CLLocationManagerDelegate {
             return
         }
       
-    }
-    
-    func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager) {
-        
-    }
-    
-    func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
-        
     }
     
 }
